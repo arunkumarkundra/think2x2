@@ -285,21 +285,23 @@ function generateAxes(template, plotArea, xAxisName, yAxisName) {
         ${midX + 4},${plotArea.y - axisExtend + 8}" 
         fill="${template.axisColor}" />`;
     
-    // X-axis label
+    // X-axis label (at bottom center)
     const fontWeight = template.boldAxisLabels ? '600' : '500';
-    svg += `<text x="${plotArea.x + plotArea.width + axisExtend + 15}" y="${midY + 5}" 
+    svg += `<text x="${midX}" y="${plotArea.y + plotArea.height + 40}" 
+        text-anchor="middle"
         font-family="Inter, sans-serif" 
         font-size="${template.axisFontSize}" 
         font-weight="${fontWeight}"
         fill="${template.axisColor}">${xAxisName}</text>`;
     
-    // Y-axis label
-    svg += `<text x="${midX}" y="${plotArea.y - axisExtend - 10}" 
+    // Y-axis label (vertical on the left)
+    svg += `<text x="${plotArea.x - 40}" y="${midY}" 
         text-anchor="middle"
         font-family="Inter, sans-serif" 
         font-size="${template.axisFontSize}" 
         font-weight="${fontWeight}"
-        fill="${template.axisColor}">${yAxisName}</text>`;
+        fill="${template.axisColor}"
+        transform="rotate(-90, ${plotArea.x - 40}, ${midY})">${yAxisName}</text>`;
     
     // Axis value labels
     svg += generateAxisLabels(template, plotArea);
