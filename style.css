@@ -318,9 +318,13 @@ a:hover {
     margin-top: var(--spacing-lg);
 }
 
+.data-points-section .subsection-title {
+    margin-bottom: var(--spacing-lg);
+}
+
 .btn-add-point {
-    margin-top: var(--spacing-md);
-    width: 100%;
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
 }
 
 .table-container {
