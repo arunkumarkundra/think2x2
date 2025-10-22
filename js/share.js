@@ -126,10 +126,14 @@ export function generateShareURL(data) {
 export async function shareMatrix(data) {
     try {
         const url = generateShareURL(data);
-        const success = await copyToClipboard(url);
+        
+        // Create a nice message
+        const message = `Check out my ${data.title} matrix:\n${url}`;
+        
+        const success = await copyToClipboard(message);
         
         if (success) {
-            showToast('🔗 Share link copied to clipboard!');
+            showToast('🔗 Link copied! Ready to share.');
             return true;
         } else {
             showToast('❌ Failed to copy share link');
