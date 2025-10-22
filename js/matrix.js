@@ -404,7 +404,6 @@ function generateDataPoints(dataPoints, template, plotArea, templateName) {
  */
 function generateFooter(template, dims) {
     const y = dims.height - (dims.footerHeight / 2) + 5;
-    const currentURL = window.location.href;
     
     return `<g class="footer">
         <line x1="0" y1="${dims.height - dims.footerHeight}" 
@@ -416,7 +415,7 @@ function generateFooter(template, dims) {
             font-family="Inter, sans-serif" 
             font-size="${template.footerFontSize + 1}" 
             fill="${template.textColor}"
-            opacity="0.7">${escapeXml(currentURL)}</text>
+            opacity="0.7">https://arunkumarkundra.github.io/think2x2/</text>
     </g>`;
 }
 
