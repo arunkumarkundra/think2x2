@@ -204,18 +204,20 @@ function generateQuadrants(template, plotArea, xAxisName, yAxisName) {
 /**
  * Generate quadrant label with multi-line support
  */
-function generateQuadrantLabel(text, x, y, template, opacity, fontSize) {
+function generateQuadrantLabel(text, x, y, template, opacity, fontSize, isCornerLabel = false) {
     const lines = text.split('\n');
     const lineHeight = fontSize + 4;
-    const startY = y - ((lines.length - 1) * lineHeight / 2);
+    const startY = isCornerLabel ? y : y - ((lines.length - 1) * lineHeight / 2);
     
     let svg = '<g>';
     lines.forEach((line, index) => {
+        const textAnchor = isCornerLabel ? 'start' : 'middle';
+        const fontWeight = isCornerLabel ? '700' : '500';
         svg += `<text x="${x}" y="${startY + index * lineHeight}" 
-            text-anchor="middle" 
+            text-anchor="${textAnchor}" 
             font-family="Inter, sans-serif" 
             font-size="${fontSize}" 
-            font-weight="500"
+            font-weight="${fontWeight}"
             fill="${template.textColor}"
             opacity="${opacity}">${escapeXml(line)}</text>`;
     });
@@ -275,7 +277,13 @@ function generateAxes(template, plotArea, xAxisName, yAxisName) {
         stroke="${template.axisColor}" 
         stroke-width="${template.axisLineWidth}" />`;
     
-    // X-axis arrow
+    // X-axis left arrow
+    svg += `<polygon points="${plotArea.x - axisExtend},${midY} 
+        ${plotArea.x - axisExtend + 8},${midY - 4} 
+        ${plotArea.x - axisExtend + 8},${midY + 4}" 
+        fill="${template.axisColor}" />`;
+    
+    // X-axis right arrow
     svg += `<polygon points="${plotArea.x + plotArea.width + axisExtend},${midY} 
         ${plotArea.x + plotArea.width + axisExtend - 8},${midY - 4} 
         ${plotArea.x + plotArea.width + axisExtend - 8},${midY + 4}" 
@@ -287,7 +295,13 @@ function generateAxes(template, plotArea, xAxisName, yAxisName) {
         stroke="${template.axisColor}" 
         stroke-width="${template.axisLineWidth}" />`;
     
-    // Y-axis arrow
+    // Y-axis bottom arrow
+    svg += `<polygon points="${midX},${plotArea.y + plotArea.height + axisExtend} 
+        ${midX - 4},${plotArea.y + plotArea.height + axisExtend - 8} 
+        ${midX + 4},${plotArea.y + plotArea.height + axisExtend - 8}" 
+        fill="${template.axisColor}" />`;
+    
+    // Y-axis top arrow
     svg += `<polygon points="${midX},${plotArea.y - axisExtend} 
         ${midX - 4},${plotArea.y - axisExtend + 8} 
         ${midX + 4},${plotArea.y - axisExtend + 8}" 
@@ -312,16 +326,16 @@ function generateAxes(template, plotArea, xAxisName, yAxisName) {
         transform="rotate(-90, ${plotArea.x - 40}, ${midY})">${yAxisName}</text>`;
     
     // Axis value labels
-    svg += generateAxisLabels(template, plotArea);
+    svg += generateAxisLabels(template, plotArea, xAxisName, yAxisName);
     
     svg += '</g>';
     return svg;
 }
 
 /**
- * Generate axis value labels (Low, High)
+ * Generate axis value labels (Low/High with axis names)
  */
-function generateAxisLabels(template, plotArea) {
+function generateAxisLabels(template, plotArea, xAxisName, yAxisName) {
     const midX = plotArea.x + plotArea.width / 2;
     const midY = plotArea.y + plotArea.height / 2;
     const fontSize = template.labelFontSize;
@@ -334,26 +348,26 @@ function generateAxisLabels(template, plotArea) {
         text-anchor="middle" font-family="Inter, sans-serif" 
         font-size="${fontSize}" 
         font-weight="500"
-        fill="${template.textColor}">Low</text>`;
+        fill="${template.textColor}">Low ${escapeXml(xAxisName)}</text>`;
     
     svg += `<text x="${plotArea.x + plotArea.width}" y="${midY + fontSize + offset}" 
         text-anchor="middle" font-family="Inter, sans-serif" 
         font-size="${fontSize}" 
         font-weight="500"
-        fill="${template.textColor}">High</text>`;
+        fill="${template.textColor}">High ${escapeXml(xAxisName)}</text>`;
     
     // Y-axis labels
     svg += `<text x="${midX - fontSize - offset - 5}" y="${plotArea.y + plotArea.height + 5}" 
         text-anchor="end" font-family="Inter, sans-serif" 
         font-size="${fontSize}" 
         font-weight="500"
-        fill="${template.textColor}">Low</text>`;
+        fill="${template.textColor}">Low ${escapeXml(yAxisName)}</text>`;
     
     svg += `<text x="${midX - fontSize - offset - 5}" y="${plotArea.y + 5}" 
         text-anchor="end" font-family="Inter, sans-serif" 
         font-size="${fontSize}" 
         font-weight="500"
-        fill="${template.textColor}">High</text>`;
+        fill="${template.textColor}">High ${escapeXml(yAxisName)}</text>`;
     
     svg += '</g>';
     return svg;
