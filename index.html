@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Think2x2 - Create beautiful 2x2 matrix visualizations. The Power of Four Squares for strategic planning, decision making, and prioritization.">
+    <meta name="keywords" content="2x2 matrix, quadrant analysis, strategic planning, visualization, priority matrix">
+    <meta name="author" content="Think2x2">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Think2x2 – The Power of Four Squares">
+    <meta property="og:description" content="Create beautiful, shareable 2x2 matrix visualizations for strategic planning and decision making.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://think2x2.com">
+    <meta property="og:image" content="https://think2x2.com/assets/og-image.png">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Think2x2 – The Power of Four Squares">
+    <meta name="twitter:description" content="Create beautiful, shareable 2x2 matrix visualizations for strategic planning and decision making.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Think2x2 – The Power of Four Squares</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <h1 class="logo">Think2x2</h1>
+                    <p class="tagline">The Power of Four Squares</p>
+                </div>
+                <nav class="header-nav" aria-label="Main navigation">
+                    <button id="aboutBtn" class="btn-secondary" aria-label="About Think2x2">
+                        About
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-main">
+        <div class="container">
+            <!-- Input Section -->
+            <section class="input-section" aria-labelledby="input-heading">
+                <h2 id="input-heading" class="section-title">Create Your Matrix</h2>
+                
+                <form id="matrixForm" class="matrix-form" novalidate>
+                    <!-- Title and Subtitle -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="matrixTitle" class="form-label">
+                                Title <span class="required" aria-label="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="matrixTitle" 
+                                name="title"
+                                class="form-input" 
+                                placeholder="e.g., Product Strategy"
+                                required
+                                aria-required="true"
+                                aria-describedby="titleHelp"
+                            >
+                            <span id="titleHelp" class="form-help">Give your matrix a descriptive title</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="matrixSubtitle" class="form-label">Subtitle</label>
+                            <input 
+                                type="text" 
+                                id="matrixSubtitle" 
+                                name="subtitle"
+                                class="form-input" 
+                                placeholder="e.g., Q4 2025 Planning"
+                                aria-describedby="subtitleHelp"
+                            >
+                            <span id="subtitleHelp" class="form-help">Optional subtitle for context</span>
+                        </div>
+                    </div>
+
+                    <!-- Axis Names -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="xAxisName" class="form-label">
+                                X-Axis Name <span class="required" aria-label="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="xAxisName" 
+                                name="xAxis"
+                                class="form-input" 
+                                placeholder="e.g., Feasibility"
+                                required
+                                aria-required="true"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="yAxisName" class="form-label">
+                                Y-Axis Name <span class="required" aria-label="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="yAxisName" 
+                                name="yAxis"
+                                class="form-input" 
+                                placeholder="e.g., Impact"
+                                required
+                                aria-required="true"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Template Selection -->
+                    <div class="form-group">
+                        <label for="templateSelect" class="form-label">Visual Template</label>
+                        <select id="templateSelect" name="template" class="form-select" aria-label="Select visual template">
+                            <option value="minimal">Minimal</option>
+                            <option value="modern" selected>Modern</option>
+                            <option value="vibrant">Vibrant</option>
+                        </select>
+                    </div>
+
+                    <!-- Data Points Table -->
+                    <div class="data-points-section">
+                        <div class="section-header">
+                            <h3 class="subsection-title">Data Points</h3>
+                            <button 
+                                type="button" 
+                                id="addPointBtn" 
+                                class="btn-secondary btn-small"
+                                aria-label="Add new data point"
+                            >
+                                + Add Point
+                            </button>
+                        </div>
+                        
+                        <div class="table-container" role="region" aria-labelledby="dataTableLabel" tabindex="0">
+                            <table id="dataPointsTable" class="data-table">
+                                <caption id="dataTableLabel" class="sr-only">Data points for matrix visualization</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Label</th>
+                                        <th scope="col">X Value (0-100)</th>
+                                        <th scope="col">Y Value (0-100)</th>
+                                        <th scope="col" class="action-col">
+                                            <span class="sr-only">Actions</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dataPointsBody">
+                                    <!-- Data rows will be inserted here by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="form-help">Add options to plot on your matrix (X and Y values from 0 to 100)</p>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Preview Section -->
+            <section class="preview-section" aria-labelledby="preview-heading">
+                <div class="section-header">
+                    <h2 id="preview-heading" class="section-title">Live Preview</h2>
+                    <div class="action-buttons">
+                        <button id="shareBtn" class="btn-secondary" aria-label="Share matrix">
+                            📋 Share
+                        </button>
+                        <button id="exportPngBtn" class="btn-primary" aria-label="Export as PNG">
+                            ⬇️ PNG
+                        </button>
+                        <button id="exportSvgBtn" class="btn-primary" aria-label="Export as SVG">
+                            ⬇️ SVG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SVG Container -->
+                <div id="matrixPreview" class="matrix-preview" role="img" aria-label="Matrix visualization preview">
+                    <!-- SVG will be inserted here by JavaScript -->
+                </div>
+
+                <!-- Accessible Data Table -->
+                <details class="accessible-table-container">
+                    <summary class="accessible-table-toggle">
+                        View Data Table (Accessible Format)
+                    </summary>
+                    <div class="table-container">
+                        <table id="accessibleDataTable" class="accessible-data-table">
+                            <caption>Matrix data in tabular format</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Option</th>
+                                    <th scope="col" id="accXAxis">X Value</th>
+                                    <th scope="col" id="accYAxis">Y Value</th>
+                                    <th scope="col">Quadrant</th>
+                                </tr>
+                            </thead>
+                            <tbody id="accessibleDataBody">
+                                <!-- Accessible data will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="copyright">&copy; 2025 Think2x2. All rights reserved.</p>
+                <p class="privacy-notice">
+                    Your data stays in your browser. We don't collect or store any information.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal" role="dialog" aria-labelledby="aboutModalTitle" aria-modal="true" hidden>
+        <div class="modal-overlay" aria-hidden="true"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="aboutModalTitle" class="modal-title">About Think2x2</h2>
+                <button id="closeModalBtn" class="modal-close" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Think2x2</strong> helps you create beautiful 2×2 matrix visualizations for strategic planning, decision making, and prioritization.</p>
+                
+                <h3>How to Use:</h3>
+                <ol>
+                    <li>Enter a title and axis names for your matrix</li>
+                    <li>Add data points with labels and X/Y values (0-100)</li>
+                    <li>Choose a visual template that fits your style</li>
+                    <li>Export as PNG or SVG, or share via link</li>
+                </ol>
+
+                <h3>Privacy & Security:</h3>
+                <p>All data processing happens in your browser. Nothing is sent to any server. Your matrices are yours alone.</p>
+
+                <h3>Accessibility:</h3>
+                <p>Think2x2 is fully keyboard navigable and screen-reader friendly, meeting WCAG 2.1 AA standards.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="closeModalBtn2" class="btn-primary">Got it!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+        <span id="toastMessage"></span>
+    </div>
+
+    <!-- Unsupported Browser Warning -->
+    <noscript>
+        <div class="browser-warning">
+            <p><strong>JavaScript Required:</strong> Think2x2 requires JavaScript to function. Please enable JavaScript in your browser settings.</p>
+        </div>
+    </noscript>
+
+    <!-- JavaScript Modules -->
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/templates.js"></script>
+    <script type="module" src="js/matrix.js"></script>
+    <script type="module" src="js/export.js"></script>
+    <script type="module" src="js/share.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
