@@ -173,6 +173,17 @@ a:hover {
     margin: 0;
 }
 
+.logo-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+}
+
+.logo-link:hover {
+    opacity: 0.8;
+    color: var(--color-primary);
+}
+
 .tagline {
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
@@ -305,6 +316,11 @@ a:hover {
 
 .data-points-section {
     margin-top: var(--spacing-lg);
+}
+
+.btn-add-point {
+    margin-top: var(--spacing-md);
+    width: 100%;
 }
 
 .table-container {
