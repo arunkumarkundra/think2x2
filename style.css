@@ -547,6 +547,10 @@ a:hover {
     padding: var(--spacing-lg);
 }
 
+.modal[hidden] {
+    display: none;
+}
+
 .modal-overlay {
     position: absolute;
     top: 0;
