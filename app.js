@@ -17,8 +17,7 @@ import { DEFAULT_TEMPLATE } from './js/templates.js';
 
 import { 
     generateMatrix, 
-    renderMatrix, 
-    updateAccessibleTable 
+    renderMatrix
 } from './js/matrix.js';
 
 import { 
@@ -259,6 +258,7 @@ function openModal() {
     const modal = document.getElementById('aboutModal');
     if (modal) {
         modal.hidden = false;
+        modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         
         // Focus close button for accessibility
@@ -302,13 +302,6 @@ function updatePreview() {
         
         // Render to container
         renderMatrix(svg, container);
-        
-        // Update accessible table
-        updateAccessibleTable(
-            state.dataPoints, 
-            state.xAxisName || 'X Value', 
-            state.yAxisName || 'Y Value'
-        );
     } catch (error) {
         console.error('Failed to update preview:', error);
         container.innerHTML = '<p style="color: red; padding: 20px;">Error rendering matrix. Please check your data.</p>';
