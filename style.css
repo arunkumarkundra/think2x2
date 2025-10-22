@@ -229,6 +229,15 @@ a:hover {
     color: var(--color-text);
 }
 
+.preview-section .section-title {
+    margin-bottom: var(--spacing-lg);
+}
+
+.preview-section .action-buttons {
+    margin-top: var(--spacing-xl);
+    justify-content: center;
+}
+
 .section-header {
     display: flex;
     justify-content: space-between;
