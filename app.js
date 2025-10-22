@@ -157,6 +157,23 @@ function initializeDataTable() {
  * Initialize action buttons
  */
 function initializeButtons() {
+    // Logo link - start fresh with confirmation
+    const logoLink = document.getElementById('logoLink');
+    if (logoLink) {
+        logoLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const confirmed = confirm('Are you sure you want to start fresh? Your current matrix will be lost.');
+            
+            if (confirmed) {
+                // Clear URL hash
+                window.location.hash = '';
+                // Reload page
+                window.location.reload();
+            }
+        });
+    }
+    
     // Share button
     const shareBtn = document.getElementById('shareBtn');
     if (shareBtn) {
