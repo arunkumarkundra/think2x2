@@ -124,25 +124,25 @@ function generateQuadrants(template, plotArea, xAxisName, yAxisName) {
     
     let svg = '';
     
-    // Top Left Quadrant
+    // Top Left Quadrant (Q2)
     svg += `<rect x="${plotArea.x}" y="${plotArea.y}" 
         width="${halfWidth}" height="${halfHeight}" 
         fill="${template.quadrants.topLeft}" 
         opacity="${opacity}" />`;
     
-    // Top Right Quadrant
+    // Top Right Quadrant (Q1)
     svg += `<rect x="${midX}" y="${plotArea.y}" 
         width="${halfWidth}" height="${halfHeight}" 
         fill="${template.quadrants.topRight}" 
         opacity="${opacity}" />`;
     
-    // Bottom Left Quadrant
+    // Bottom Left Quadrant (Q3)
     svg += `<rect x="${plotArea.x}" y="${midY}" 
         width="${halfWidth}" height="${halfHeight}" 
         fill="${template.quadrants.bottomLeft}" 
         opacity="${opacity}" />`;
     
-    // Bottom Right Quadrant
+    // Bottom Right Quadrant (Q4)
     svg += `<rect x="${midX}" y="${midY}" 
         width="${halfWidth}" height="${halfHeight}" 
         fill="${template.quadrants.bottomRight}" 
@@ -153,40 +153,48 @@ function generateQuadrants(template, plotArea, xAxisName, yAxisName) {
         const labelOpacity = template.quadrantLabelOpacity || 0.5;
         const fontSize = template.labelFontSize;
         
+        // Q2 - Top Left
         svg += generateQuadrantLabel(
-            getQuadrantLabel('topLeft', xAxisName, yAxisName),
-            plotArea.x + halfWidth / 2,
-            plotArea.y + halfHeight / 2,
+            'Q2',
+            plotArea.x + 20,
+            plotArea.y + 20,
             template,
             labelOpacity,
-            fontSize
+            fontSize - 2,
+            true
         );
         
+        // Q1 - Top Right
         svg += generateQuadrantLabel(
-            getQuadrantLabel('topRight', xAxisName, yAxisName),
-            midX + halfWidth / 2,
-            plotArea.y + halfHeight / 2,
+            'Q1',
+            midX + halfWidth - 20,
+            plotArea.y + 20,
             template,
             labelOpacity,
-            fontSize
+            fontSize - 2,
+            true
         );
         
+        // Q3 - Bottom Left
         svg += generateQuadrantLabel(
-            getQuadrantLabel('bottomLeft', xAxisName, yAxisName),
-            plotArea.x + halfWidth / 2,
-            midY + halfHeight / 2,
+            'Q3',
+            plotArea.x + 20,
+            midY + halfHeight - 10,
             template,
             labelOpacity,
-            fontSize
+            fontSize - 2,
+            true
         );
         
+        // Q4 - Bottom Right
         svg += generateQuadrantLabel(
-            getQuadrantLabel('bottomRight', xAxisName, yAxisName),
-            midX + halfWidth / 2,
-            midY + halfHeight / 2,
+            'Q4',
+            midX + halfWidth - 20,
+            midY + halfHeight - 10,
             template,
             labelOpacity,
-            fontSize
+            fontSize - 2,
+            true
         );
     }
     
