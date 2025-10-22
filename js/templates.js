@@ -73,8 +73,15 @@ export const templates = {
             bottomRight: '#fce4ec'
         },
         
-        // Point styling with color variety
-        pointColors: ['#2196f3', '#4caf50', '#ff9800', '#e91e63', '#9c27b0', '#00bcd4'],
+        // Point styling with 32 distinct colors
+        pointColors: [
+            '#2196f3', '#4caf50', '#ff9800', '#e91e63', '#9c27b0', '#00bcd4',
+            '#f44336', '#3f51b5', '#8bc34a', '#ffc107', '#673ab7', '#009688',
+            '#ff5722', '#cddc39', '#795548', '#607d8b', '#1976d2', '#388e3c',
+            '#f57c00', '#c2185b', '#7b1fa2', '#0097a7', '#d32f2f', '#303f9f',
+            '#689f38', '#ffa000', '#512da8', '#00796b', '#e64a19', '#afb42b',
+            '#5d4037', '#455a64'
+        ],
         pointRadius: 8,
         pointStroke: '#ffffff',
         pointStrokeWidth: 3,
@@ -121,8 +128,15 @@ export const templates = {
         },
         quadrantOpacity: 0.3,
         
-        // Point styling
-        pointColors: ['#d32f2f', '#7b1fa2', '#1976d2', '#388e3c', '#f57c00', '#c2185b'],
+        // Point styling with 32 distinct colors
+        pointColors: [
+            '#d32f2f', '#7b1fa2', '#1976d2', '#388e3c', '#f57c00', '#c2185b',
+            '#512da8', '#0097a7', '#689f38', '#ffa000', '#5d4037', '#455a64',
+            '#e91e63', '#9c27b0', '#2196f3', '#4caf50', '#ff9800', '#795548',
+            '#673ab7', '#00bcd4', '#8bc34a', '#ffc107', '#607d8b', '#3f51b5',
+            '#f44336', '#cddc39', '#009688', '#ff5722', '#afb42b', '#303f9f',
+            '#00796b', '#e64a19'
+        ],
         pointRadius: 10,
         pointStroke: '#ffffff',
         pointStrokeWidth: 3,
