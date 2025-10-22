@@ -234,7 +234,7 @@ a:hover {
 }
 
 .preview-section .action-buttons {
-    margin-top: var(--spacing-xl);
+    margin-top: var(--spacing-md);
     justify-content: center;
 }
 
