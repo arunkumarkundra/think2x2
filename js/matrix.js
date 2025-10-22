@@ -408,12 +408,27 @@ function generateDataPoints(dataPoints, template, plotArea, templateName) {
  */
 function generateFooter(template, dims) {
     const y = dims.height - (dims.footerHeight / 2) + 5;
+    const logoSize = 24;
+    const logoY = dims.height - dims.footerHeight + 15;
     
     return `<g class="footer">
         <line x1="0" y1="${dims.height - dims.footerHeight}" 
             x2="${dims.width}" y2="${dims.height - dims.footerHeight}" 
             stroke="${template.gridColor}" stroke-width="1" />
         
+        <!-- Logo and App Name (Left) -->
+        <image x="${dims.padding}" y="${logoY}" 
+            width="${logoSize}" height="${logoSize}" 
+            href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHJ4PSI4IiBmaWxsPSIjMjE5NkYzIi8+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTIsIDEyKSI+CiAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSIyIiBmaWxsPSIjRkZGRkZGIiBvcGFjaXR5PSIwLjkiLz4KICAgIDxyZWN0IHg9IjIyIiB5PSIwIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSIyIiBmaWxsPSIjRkZGRkZGIiBvcGFjaXR5PSIwLjkiLz4KICAgIDxyZWN0IHg9IjAiIHk9IjIyIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSIyIiBmaWxsPSIjRkZGRkZGIiBvcGFjaXR5PSIwLjkiLz4KICAgIDxyZWN0IHg9IjIyIiB5PSIyMiIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iMiIgZmlsbD0iI0ZGRkZGRiIgb3BhY2l0eT0iMC45Ii8+CiAgICA8bGluZSB4MT0iMjAiIHkxPSIwIiB4Mj0iMjAiIHkyPSI0MCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNSIvPgogICAgPGxpbmUgeDE9IjAiIHkxPSIyMCIgeDI9IjQwIiB5Mj0iMjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjUiLz4KICA8L2c+Cjwvc3ZnPg==" />
+        
+        <text x="${dims.padding + logoSize + 8}" y="${y}" 
+            font-family="Poppins, sans-serif" 
+            font-size="${template.footerFontSize + 2}" 
+            font-weight="600"
+            fill="${template.textColor}"
+            opacity="0.7">Think2x2</text>
+        
+        <!-- URL (Right) -->
         <text x="${dims.width - dims.padding}" y="${y}" 
             text-anchor="end"
             font-family="Inter, sans-serif" 
