@@ -215,20 +215,33 @@ function initializeModal() {
     const closeModal = () => {
         if (modal) {
             modal.hidden = true;
+            modal.style.display = 'none';
             document.body.style.overflow = '';
         }
     };
     
     if (closeBtn1) {
-        closeBtn1.addEventListener('click', closeModal);
+        closeBtn1.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeModal();
+        });
     }
     
     if (closeBtn2) {
-        closeBtn2.addEventListener('click', closeModal);
+        closeBtn2.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeModal();
+        });
     }
     
     if (overlay) {
-        overlay.addEventListener('click', closeModal);
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                closeModal();
+            }
+        });
     }
     
     // ESC key to close
