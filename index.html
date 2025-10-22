@@ -141,17 +141,7 @@
 
                     <!-- Data Points Table -->
                     <div class="data-points-section">
-                        <div class="section-header">
-                            <h3 class="subsection-title">Data Points</h3>
-                            <button 
-                                type="button" 
-                                id="addPointBtn" 
-                                class="btn-secondary btn-small"
-                                aria-label="Add new data point"
-                            >
-                                + Add Point
-                            </button>
-                        </div>
+                        <h3 class="subsection-title">Data Points</h3>
                         
                         <div class="table-container" role="region" aria-labelledby="dataTableLabel" tabindex="0">
                             <table id="dataPointsTable" class="data-table">
@@ -172,6 +162,15 @@
                             </table>
                         </div>
                         <p class="form-help">Add options to plot on your matrix (X and Y values from 0 to 100)</p>
+                        
+                        <button 
+                            type="button" 
+                            id="addPointBtn" 
+                            class="btn-secondary btn-add-point"
+                            aria-label="Add new data point"
+                        >
+                            + Add Point
+                        </button>
                     </div>
                 </form>
             </section>
