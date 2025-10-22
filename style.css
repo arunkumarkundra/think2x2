@@ -154,6 +154,18 @@ a:hover {
     flex-direction: column;
 }
 
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    display: block;
+}
+
 .logo {
     font-size: var(--font-size-2xl);
     font-weight: 700;
@@ -688,6 +700,15 @@ a:hover {
         text-align: center;
     }
     
+    .logo-wrapper {
+        justify-content: center;
+    }
+    
+    .logo-icon {
+        width: 32px;
+        height: 32px;
+    }
+    
     .input-section,
     .preview-section {
         padding: var(--spacing-lg);
@@ -713,6 +734,11 @@ a:hover {
     
     .logo {
         font-size: var(--font-size-xl);
+    }
+    
+    .logo-icon {
+        width: 28px;
+        height: 28px;
     }
     
     .btn-primary,
